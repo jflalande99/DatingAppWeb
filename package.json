@@ -1,5 +1,5 @@
 {
-  "name": "angularapp1.client",
+  "name": "DatingAppWeb",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -25,7 +25,6 @@
     "bootstrap": "^5.3.3",
     "bootswatch": "^5.3.7",
     "font-awesome": "^4.7.0",
-    "jest-editor-support": "*",
     "ngx-bootstrap": "^21.2.0",
     "ngx-toastr": "^19.0.0",
     "run-script-os": "*",
@@ -42,16 +41,10 @@
     "@angular/build": "^21.2.8",
     "@angular/cli": "^21.2.8",
     "@angular/compiler-cli": "^21.2.10",
-    "@types/jasmine": "~4.3.0",
-    "@typescript-eslint/eslint-plugin": "7.11.0",
-    "@typescript-eslint/parser": "7.11.0",
-    "eslint": "^8.57.0",
-    "jasmine-core": "~4.6.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
+    "@types/jest": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.1",
+    "eslint": "^10.2.1",
     "typescript": "5.9.3"
   }
 }
