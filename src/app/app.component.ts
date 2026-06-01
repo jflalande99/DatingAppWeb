@@ -13,7 +13,7 @@ import { HomeComponent } from "./home/home.component";
 })
 export class AppComponent implements OnInit {  
   private accountService = inject(AccountService);
-  title = 'DatingApp';
+  title = 'Dating app';
 
   constructor(private http: HttpClient) {} // OnInit est appelé après le constructeur
 
