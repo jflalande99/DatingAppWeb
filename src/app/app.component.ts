@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal, Signal } from '@angular/core';
 import { NavComponent } from '../layout/nav/nav.component';
 import { AccountService } from './services/account.service';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from "./home/home.component";
+import { lastValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -13,12 +14,24 @@ import { HomeComponent } from "./home/home.component";
 })
 export class AppComponent implements OnInit {  
   private accountService = inject(AccountService);
-  title = 'Dating app';
+  private http = inject(HttpClient);
+  protected title = 'Dating app';
+  protected members = signal<any>([]);
 
-  constructor(private http: HttpClient) {} // OnInit est appelé après le constructeur
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.setCurrentUser();
+
+    this.members.set(await this.getMembers());
+    
+  }
+
+  async getMembers() {
+    try {
+      return lastValueFrom(this.http.get('https://localhost:7281/api/users'));
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 
   setCurrentUser() {
