@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from '../layout/nav/nav.component';
 import { AccountService } from './services/account.service';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from "./home/home.component";

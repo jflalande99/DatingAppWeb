@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AccountService } from '../services/account.service';
+import { AccountService } from '../../app/services/account.service';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
