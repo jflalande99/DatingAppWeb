@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Inject, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, output, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AccountService } from '../services/account.service';
+import { AccountService } from 'src/core/account.service';
 import { ToastrService } from 'ngx-toastr';
+import { RegisterCreds, User } from 'src/types/user';
 
 @Component({
     selector: 'app-register',
@@ -11,14 +12,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent {
   private accountService = inject(AccountService);  
-  private toastr = inject(ToastrService)
-  @Input() usersFromHomeComponent: any;
-  @Output() cancelRegister = new EventEmitter();
+  private toastr = inject(ToastrService)  
+  protected creds = {} as RegisterCreds;
+  cancelRegister = output<boolean>();
+  
+  ngOnInit() {    
 
-  model: any = {}
+  }
 
   register() {
-    this.accountService.register(this.model).subscribe({
+    this.accountService.register(this.creds).subscribe({
       next: response => {
       console.log(response);
       this.cancel();

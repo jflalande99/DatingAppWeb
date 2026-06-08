@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { User } from '../models/user';
+import { User } from  '../types/user';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -11,12 +11,11 @@ export class AccountService {
   baseUrl = 'https://localhost:7281/api/'
   currentUser = signal<User | null>(null);
   
-  login(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
+  login(creds: any) {
+    return this.http.post<User>(this.baseUrl + 'account/login', creds).pipe(
       map(user => {
-        if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.set(user);
+        if (user) {          
+          this.setCurrentUser(user);
         }
       })
     )
@@ -26,12 +25,16 @@ export class AccountService {
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map(user => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUser.set(user);
+          this.setCurrentUser(user);
         }
-        return user;
       })
     )
+  } 
+
+  setCurrentUser(user: User) {
+    console.log(user);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUser.set(user);
   } 
 
   logout() {

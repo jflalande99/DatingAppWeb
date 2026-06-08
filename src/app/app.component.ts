@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal, Signal } from '@angular/core';
 import { NavComponent } from '../layout/nav/nav.component';
-import { AccountService } from './services/account.service';
-import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from "./home/home.component";
+import { AccountService } from '../core/account.service';
 import { lastValueFrom } from 'rxjs';
+import { HomeComponent } from "./home/home.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    imports: [RouterOutlet, NavComponent],
+    imports: [NavComponent, HomeComponent],
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {  
