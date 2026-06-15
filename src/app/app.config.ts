@@ -1,18 +1,15 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import {provideAnimations} from '@angular/platform-browser/animations';
+import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
+import { provideRouter, withViewTransitions } from '@angular/router';
+
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { provideToastr } from 'ngx-toastr';
+import { InitServiceService } from 'src/core/init-service.service';
+import { lastValueFrom } from 'rxjs';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
-    provideHttpClient(),
-    provideAnimations(),
-    provideToastr({
-      positionClass: 'toast-bottom-right'
-    })
+    provideRouter(routes, withViewTransitions()),
+    provideHttpClient() 
   ]
 };

@@ -27,7 +27,6 @@
     "bootswatch": "^5.3.7",
     "font-awesome": "^4.7.0",
     "ngx-bootstrap": "^21.2.0",
-    "ngx-toastr": "^19.0.0",
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.3.0",
