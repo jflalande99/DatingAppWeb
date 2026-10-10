@@ -1,6 +1,8 @@
-import { Component, inject, OnInit, signal } from '@angular/core';  
+import { Location } from '@angular/common';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';  
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
+import { AccountService } from 'src/core/account.service';
 import { AgePipe } from 'src/core/age.pipe';
 import { MemberServiceService } from 'src/core/member-service.service';
 import { Member } from 'src/types/member';
@@ -12,17 +14,19 @@ import { Member } from 'src/types/member';
     styleUrl: './member-detail.component.css'
 })
 export class MemberDetailComponent implements OnInit {
-    private memberService = inject(MemberServiceService);
+    protected memberService = inject(MemberServiceService);
+    private accountService = inject(AccountService);
     private route = inject(ActivatedRoute);
     private router = inject(Router);
-    protected member = signal<Member | undefined>(undefined);
     protected title = signal<string | undefined>('Profile');
+    protected isCurrentUser = computed(() => {
+        const currentUser = this.accountService.currentUser();
+        return this.accountService.currentUser()?.id === this.route.snapshot.paramMap.get('id');
+    });   
+    private location = inject(Location);
+
 
     ngOnInit() {
-        this.route.data.subscribe({
-            next: data => this.member.set(data['member'])
-        })
-
         this.title.set(this.route.snapshot.firstChild?.title);
 
         this.router.events.pipe(
@@ -32,4 +36,7 @@ export class MemberDetailComponent implements OnInit {
         });
     }
 
+    goBack() {
+      this.location.back();
+    }
 }
