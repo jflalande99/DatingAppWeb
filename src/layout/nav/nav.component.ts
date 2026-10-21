@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   private router = inject(Router)
   private toast = inject(ToastService)
   protected creds: any = {}
-  protected selectedTheme = signal<string>(localStorage.getItem('theme') || 'dark');
+  protected selectedTheme = signal<string>(localStorage.getItem('theme') || 'light');
   protected themes = themes;
 
   ngOnInit(): void {
