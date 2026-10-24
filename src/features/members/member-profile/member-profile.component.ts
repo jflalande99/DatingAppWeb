@@ -6,10 +6,11 @@ import { MemberServiceService } from 'src/core/member-service.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastService } from 'src/core/toast-service.service';
 import { AccountService } from 'src/core/account.service';
+import { TimeAgoPipe } from 'src/core/time-ago.pipe';
 
 @Component({
   selector: 'app-member-profile',
-  imports: [DatePipe, FormsModule],
+  imports: [DatePipe, FormsModule, TimeAgoPipe],
   templateUrl: './member-profile.component.html',
   styleUrl: './member-profile.component.css',
 })
